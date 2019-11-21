@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Compatibilidad</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css" />
+    <link rel="stylesheet" href="../css/select2.css">
+    <link rel="stylesheet" href="../css/select2-bootstrap4.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/datepicker.min.css">
+    <script type="text/javascript" async src="https://kit.fontawesome.com/5cb5eafcff.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <div class="sidebar-heading">¡Bienvenido!</div>
+            <div class="list-group list-group-flush">
+                <a href="../persons/" class="list-group-item list-group-item-action ">Personas </a>
+                <a href="../cpu/" class="list-group-item list-group-item-action">CPU </a>
+                <a href="../percpu/" class="list-group-item list-group-item-action">Nombre/Modelo </a>
+                <a href="../ObservationPersons/" class="list-group-item list-group-item-action">Observaciones </a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-color border-bottom">
+                <button class="btn btn-primary" id="menu-toggle"><i class="fas fa-align-left"></i></button>
+                <a class="nav-link ml-auto" href="../login/index.html">Cerrar sesión <i
+                        class="fas fa-door-open"></i></a>
+            </nav>
+            <div class="container-fluid">
+                <form id="frm">
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="Correo electronico" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="foremail" class="col-sm-2 col-form-label">Destinatario</label>
+                        <div class="col-sm-10">
+                            <select multiple="multiple" class="form-control" name="foremail" id="foremail"
+                                placeholder="Correo electronico">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="subject" class="col-sm-2 col-form-label">Asunto</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="message" class="col-sm-2 col-form-label">Mensaje</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="extra" class="col-sm-2 col-form-label">Mensajes extras</label>
+                        <div class="col-sm-10">
+                            <select multiple="multiple" class="form-control" name="extra" id="extra"
+                                placeholder="Mensajes adicionales">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-primary rounded-pill ml-3 mr-3">Enviar</button>
+                        <button type="reset" class="btn btn-danger rounded-pill">Reiniciar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+    </div>
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar observacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="Efrm">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col">
+                                    <label>Persona</label>
+                                    <select id="Eperson" name="Eperson" class="form-control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label>Observacion</label>
+                                    <input type="text" id="Eobs" name="Eobs" class="form-control">
+                                </div>
+                                <div class="col">
+                                    <label>Cpu</label>
+                                    <select id="Ecpu" name="Ecpu" class="form-control">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/jquery.validate.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap-notify.min.js"></script>
+    <script src="../js/select2.full.js"></script>
+    <script type="text/javascript" src="../DataTables/datatables.min.js"></script>
+    <script src="../js/datepicker.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+
+</html>
