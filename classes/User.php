@@ -135,7 +135,9 @@ class User extends Connection
                 $return_value['data'] = password_verify($data['password'],$row['password']);
                 session_start();
                 $_SESSION['user_id'] = $row['id'];
-                $return_value['type'] = $row['type_id'];
+                $_SESSION['email'] = $row['email'];
+                $_SESSION['username'] = $row['username'];
+
 
             }
             
@@ -196,5 +198,10 @@ class User extends Connection
             $return_value['response']=$e->getMessage();
         }
         return $return_value;
+    }
+
+    function getUsername() {
+        session_start();
+        return $_SESSION['username'] ?  $_SESSION['username'] : 0;
     }
 }

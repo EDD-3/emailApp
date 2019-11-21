@@ -42,25 +42,14 @@ function login() {
         password: $('#inputPassword').val()
 
     }
-    $.post('../users/main.php', {
+    $.post('main.php', {
         method: 'login',
         data: data
     }, function (e) {
         console.log(e);
         if (e.data) {
-            switch(e.type){
-                case '1':
-                    window.location.replace('../users/');
-                    break;
-                case '2':  
-                    window.location.replace('../products/');
-                    break;
-                case '3':
-                    window.location.replace('../comparisons/');
-                    break;
-            }
-        }
-         else {
+                    window.location.replace('../newMessageUI/');
+        } else {
             $.notify({
                 message:'Inicio de sesión incorrecto'
             },{

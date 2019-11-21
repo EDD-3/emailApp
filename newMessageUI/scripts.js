@@ -18,14 +18,7 @@ $.extend($.validator.messages,{
 })
 
 $(document).ready(function(){
-    
-    getData();
-    setupValidation();
-    getDropPerson();
-    getDropEPerson();
-    getDropCpu();
-    getDropECpu();
-
+  
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
