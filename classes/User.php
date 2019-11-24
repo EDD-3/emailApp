@@ -48,7 +48,7 @@ class User extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM users");
+            $statement = $cnx->prepare("SELECT id,username,email FROM users");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
@@ -203,5 +203,15 @@ class User extends Connection
     function getUsername() {
         session_start();
         return $_SESSION['username'] ?  $_SESSION['username'] : 0;
+    }
+
+    function getUserEmail() {
+        session_start();
+        return $_SESSION['email'] ?  $_SESSION['email'] : 0;
+    }
+
+    function getUserId() {
+        session_start();
+        return $_SESSION['user_id'] ?  $_SESSION['user_id'] : 0;
     }
 }

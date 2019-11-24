@@ -19,11 +19,18 @@ $.extend($.validator.messages,{
 
 $(document).ready(function(){
   
+    getUsername();
+    getUserEmail();
+    getUserId();
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
 });
+
+let user_id;
+
+const filterReceivers = (rows) => rows.filter( row => row.id !== user_id );
 
 function getDropPerson(){
     $.post('../persons/main.php',{method:'get'},function(e){
@@ -46,72 +53,22 @@ function getDropPerson(){
     });
 }
 
-function getDropCpu(){
-    $.post('../cpu/main.php',{method:'get'},function(e){
-        var datosDrop = [];
-        values = e;
-        $.each(e,function(index,value){
-            var obj = {
-                id:value.id,
-                text:value.model
-            };
-            datosDrop.push(obj);
-        });
 
-        $('#cpu').select2({
-            placeholder: 'Seleccione una CPU',
-            data:datosDrop,
-            theme: "bootstrap4",
-            width: 'element'
-        });
+const getUsername = () => {
+    $.post('../loginUI/main.php',{method:'getUsername'},function(data){
+        $("#name").text(data);
     });
 }
 
-function getDropECpu(){
-    $.post('../cpu/main.php',{method:'get'},function(e){
-        var datosDrop = [];
-        values = e;
-        $.each(e,function(index,value){
-            var obj = {
-                id:value.id,
-                text:value.model
-            };
-            datosDrop.push(obj);
-        });
-
-        $('#Ecpu').select2({
-            placeholder: 'Seleccione un CPU',
-            data:datosDrop,
-            theme: "bootstrap4",
-            width: 'element'
-        });
+const getUserEmail = () => {
+    $.post('../loginUI/main.php',{method:'getUserEmail'},function(data){
+        $("#email").val(data);
     });
 }
 
-function getDropEPerson(){
-    $.post('../persons/main.php',{method:'get'},function(e){
-        var datosDrop = [];
-        values = e;
-        $.each(e,function(index,value){
-            var obj = {
-                id:value.id,
-                text:value.name
-            };
-            datosDrop.push(obj);
-        });
-
-        $('#Eperson').select2({
-            placeholder: 'Seleccione un persona',
-            data:datosDrop,
-            theme: "bootstrap4",
-            width: 'element'
-        });
-    });
-}
-
-function getData() {
-    $.post('main.php',{method:'get'},function(data){
-        setDataTable(data);
+const getUserId = () => {
+    $.post('../loginUI/main.php',{method:'getUserId'},function(data){
+        user_id = data;
     });
 }
 

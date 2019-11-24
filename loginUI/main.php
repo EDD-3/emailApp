@@ -5,6 +5,7 @@ require_once('../classes/User.php');
 if (isset($_POST['method'])) {
     header('Content-Type:application/json');
     $obj = new User();
+
     switch ($_POST['method']) {
         case 'login':       
         $data = $_POST['data'];
@@ -21,7 +22,6 @@ if (isset($_POST['method'])) {
         $resp = $obj->read();
         echo json_encode($resp['response']);
         break;
-        
         
         case 'delete':
         $resp = $obj->delete($_POST['data']);
@@ -42,6 +42,21 @@ if (isset($_POST['method'])) {
         case 'show':
         $resp = $obj->show($_POST['data']);
         echo json_encode($resp['response']);
+        break;
+
+        case 'getUsername':
+        $resp = $obj->getUsername();
+        echo json_encode($resp);
+        break;
+
+        case 'getUserEmail':
+        $resp = $obj->getUserEmail();
+        echo json_encode($resp);
+        break;
+
+        case 'getUserId':
+        $resp = $obj->getUserId();
+        echo json_encode($resp);
         break;
         
     }
