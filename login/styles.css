@@ -1,25 +1,26 @@
-html,
-body {
+html, body {
   height: 100% !important;
 }
 
 body {
   display: -ms-flexbox !important;
   -ms-flex-align: center !important;
-  align-items: center !important;
+  -webkit-box-align: center !important;
+          align-items: center !important;
   padding-top: 40px !important;
-  background-image:url("../img/images.jpg") !important;
+  background-image: url("../img/images.jpg") !important;
   background-size: cover;
   background-repeat: no-repeat;
- 
 }
 
 #login {
-    margin-top: 100px;
+  margin-top: 100px;
 }
+
 #login h1 {
-    color: black;
+  color: black;
 }
+
 .form-signin {
   width: 100%;
   max-width: 330px;
@@ -27,22 +28,27 @@ body {
   display: inline-block;
   border-radius: 15px;
   color: black !important;
-  background-color: hsla(0, 0%, 100%);
+  background-color: white;
   margin-bottom: 20px;
 }
+
 .form-signin .checkbox {
   font-weight: 400;
 }
+
 .form-signin .form-control {
   position: relative;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   height: auto;
   padding: 10px;
   font-size: 16px;
 }
+
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
@@ -50,6 +56,7 @@ body {
   margin-top: 25px;
   margin-bottom: 25px;
 }
+
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
@@ -58,22 +65,22 @@ body {
 }
 
 .btn-primary {
-    background-color: hsl(48, 98%, 50%) !important;
-    color: black;
+  background-color: #fcca03 !important;
+  color: black;
 }
 
 .btn-primary:hover {
-    background-color: hsl(48, 100%, 59%) !important;
-    color: black;
+  background-color: #ffd52e !important;
+  color: black;
 }
 
-#footN {
-    border: 0 !important;
-    background-color: hsla(0, 0%, 0%, 0.5) !important;
+#footN, #footN h1, #footN h5, #footN li, #footN li a, #footN small {
+  border: 0 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .text-muted:hover {
-    color: red !important;
+  color: red !important;
 }
 
 button.btn.btn-lg.btn-primary.btn-block {
@@ -81,71 +88,65 @@ button.btn.btn-lg.btn-primary.btn-block {
 }
 
 .navbar-color {
-  background-color: hsl(0, 0%, 100%) !important;
+  background-color: white !important;
   width: 100%;
 }
 
 div#footN {
   border-top: 3px black solid !important;
-  background-color: hsla(0, 0%, 0%, 0.80) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
   position: absolute;
   top: 82%;
   left: 0;
   right: 0;
-
 }
 
-#footN h1, #footN h5, #footN li a, #footN small {
+#footN, #footN h1, #footN h5, #footN li, #footN li a, #footN small {
   color: white !important;
 }
 
-@media (max-width: 1024px) {  
- div#login {
-   position: absolute;
-   top: 22%;
-   left: 0;
-   right: 0;
- }
-
- div#footN {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
- }
-
-}
-
-@media (max-height: 1366px) {  
+@media (max-width: 1024px) {
   div#login {
     position: absolute;
     top: 22%;
     left: 0;
     right: 0;
   }
- 
   div#footN {
-   position: absolute;
-   top: 100%;
-   left: 0;
-   right: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-height: 1366px) {
+  div#login {
+    position: absolute;
+    top: 22%;
+    left: 0;
+    right: 0;
+  }
+  div#footN {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
   }
   body {
     background-repeat: repeat;
   }
- 
- }
+}
 
-
-@media (max-width: 415px) {  
+@media (max-width: 415px) {
   body {
-   background-repeat: repeat-y;
+    background-repeat: repeat-y;
   }
-
   div#login {
     position: absolute;
     top: 10%;
     left: 0;
     right: 0;
   }
- }
+}
+/*# sourceMappingURL=styles.css.map */

@@ -51,12 +51,11 @@
 
             console.log(newRow);
 
-            $.post('loginUI/main.php', {
+            $.post('login/main.php', {
                 method: 'insert',
                 data: newRow
             }, function (e) {
 
-                $('#frm')[0].reset();
             });
         }
     </script>

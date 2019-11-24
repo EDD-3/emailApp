@@ -55,19 +55,19 @@ function getDropPerson(){
 
 
 const getUsername = () => {
-    $.post('../loginUI/main.php',{method:'getUsername'},function(data){
+    $.post('../login/main.php',{method:'getUsername'},function(data){
         $("#name").text(data);
     });
 }
 
 const getUserEmail = () => {
-    $.post('../loginUI/main.php',{method:'getUserEmail'},function(data){
+    $.post('../login/main.php',{method:'getUserEmail'},function(data){
         $("#email").val(data);
     });
 }
 
 const getUserId = () => {
-    $.post('../loginUI/main.php',{method:'getUserId'},function(data){
+    $.post('../login/main.php',{method:'getUserId'},function(data){
         user_id = data;
     });
 }

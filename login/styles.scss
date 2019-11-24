@@ -1,0 +1,179 @@
+$button-color: hsl(48, 98%, 50%);
+$contrast-color: black;
+@mixin footer-position {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+@mixin login-position{
+    position: absolute;
+    top: 22%;
+    left: 0;
+    right: 0;
+}
+
+html{
+  height: 100% !important;
+}
+
+body {
+    @extend html;
+  display: -ms-flexbox !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  padding-top: 40px !important;
+  background-image:url("../img/images.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
+}
+
+#login {
+    margin-top: 100px;
+    h1 {
+        color: $contrast-color;
+    }
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 30px;
+  display: inline-block;
+  border-radius: 15px;
+  color:$contrast-color !important;
+  background-color: white;
+  margin-bottom: 20px;
+
+  .checkbox {
+    font-weight: 400;
+  }
+
+  .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+    &:focus {
+        z-index: 2;
+      }
+  }
+
+  input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin-bottom: 50px;
+  }
+}
+
+
+.btn-primary {
+    background-color: $button-color !important;
+    color:$contrast-color;
+    &:hover {
+        background-color: hsl(48, 100%, 59%) !important;
+        color:$contrast-color;
+    }
+}
+
+
+#footN {
+    border: 0 !important;
+    background-color: hsla(0, 0%, 0%, 0.5) !important;
+}
+
+.text-muted:hover {
+    color: red !important;
+}
+
+button.btn.btn-lg.btn-primary.btn-block {
+  border-color: transparent !important;
+}
+
+.navbar-color {
+  background-color: hsl(0, 0%, 100%) !important;
+  width: 100%;
+}
+
+div#footN {
+  border-top: 3px black solid !important;
+  background-color: hsla(0, 0%, 0%, 0.80) !important;
+  position: absolute;
+  top: 82%;
+  left: 0;
+  right: 0;
+
+}
+
+#footN {
+  color: white !important;
+
+  h1 {
+      @extend #footN;
+  }
+
+  h5 {
+      @extend #footN;
+  }
+
+  li{
+      @extend #footN;
+      a{
+          @extend li;
+      }
+  }
+
+  small{
+      @extend #footN;
+  }
+}
+
+@media (max-width: 1024px) {  
+ div#login {
+     @include login-position();
+ }
+
+ div#footN {
+    @include footer-position();
+ }
+
+}
+
+@media (max-height: 1366px) {  
+  div#login {
+    @include login-position()
+  }
+ 
+  div#footN {
+    @include footer-position();
+  }
+  body {
+    background-repeat: repeat;
+  }
+ 
+ }
+
+@media (max-width: 415px) {  
+  body {
+   background-repeat: repeat-y;
+  }
+
+  div#login {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    right: 0;
+  }
+ }

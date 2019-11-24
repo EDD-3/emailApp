@@ -48,7 +48,7 @@ function login() {
     }, function (e) {
         console.log(e);
         if (e.data) {
-                    window.location.replace('../newMessageUI/');
+                    window.location.replace('../newMessage');
         } else {
             $.notify({
                 message:'Inicio de sesión incorrecto'
