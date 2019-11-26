@@ -22,9 +22,20 @@ class Message extends Connection
 
         try
         {
-            $statement = $cnx->prepare("INSERT INTO messages (subject, from_id, to_id, datetime)
-            VALUES (:subject, :from_id, :to_id, NOW()");
+            $statement = $cnx->prepare("INSERT INTO messages (subject, from_id, to_id, date_time)
+            VALUES (:subject, :from_id, :to_id, NOW())");
             $statement->execute($data);
+            $last_id = $cnx->lastInsertId();
+
+            
+            sleep(3);
+
+            for ($i=0, $len=count($_POST['messages']); $i<$len; $i++) {
+                $statement = $cnx->prepare("INSERT INTO message_details (message_id, body)
+                VALUES (:message_id, :body)");
+                $statement->execute(array(':message_id' => $last_id, ':body' => $_POST['messages'][$i]['body']));
+            }
+            
         }
     
         catch(PDOException $e)

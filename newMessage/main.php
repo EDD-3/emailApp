@@ -1,10 +1,10 @@
 <?php
 
-require_once('../classes/ObsPerson.php');
+require_once('../classes/Message.php');
 if (isset($_POST['method']))
 {
     header('Content-Type: application/json');
-    $obj = new ObsPerson();
+    $obj = new Message();
     switch($_POST['method'])
     {
         case 'get':

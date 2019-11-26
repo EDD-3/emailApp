@@ -18,10 +18,16 @@ $.extend($.validator.messages,{
 })
 
 $(document).ready(function(){
-  
+    getUserId();
     getUsername();
     getUserEmail();
-    getUserId();
+    setupValidation();
+    getDropContacts();
+    $('#addMessage').click(() => {
+        addMessage();
+        $('#message').val('');
+    });
+
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
@@ -29,22 +35,24 @@ $(document).ready(function(){
 });
 
 let user_id;
+let messages = [];
 
-const filterReceivers = (rows) => rows.filter( row => row.id !== user_id );
+const filterReceivers = (rows) => {
+return rows.filter( row => row.id !== user_id );}
 
-function getDropPerson(){
-    $.post('../persons/main.php',{method:'get'},function(e){
+function getDropContacts(){
+    $.post('../login/main.php',{method:'get'},function(e){
         var datosDrop = [];
-        values = e;
-        $.each(e,function(index,value){
+        let values = filterReceivers(e);
+        $.each(values,function(index,value){
             var obj = {
                 id:value.id,
-                text:value.name
+                text:value.username
             };
             datosDrop.push(obj);
         });
 
-        $('#person').select2({
+        $('#foremail').select2({
             placeholder: 'Seleccione una persona',
             data:datosDrop,
             theme: "bootstrap4",
@@ -72,62 +80,39 @@ const getUserId = () => {
     });
 }
 
+const createMessage = (body) => {
+    return {
+        body: body
+    }
+}
+
+const addMessage = () => {
+    const $messageBody = $('#message').val();
+    messages.push(createMessage($messageBody))
+    console.log(messages);
+
+};
+
 function addData(){
+    let forContacts = $('#foremail').val();
+    forContacts = forContacts.join(', ');
+
+    console.log(forContacts);
     var newRow = {
-        'person_id':$('#person').val(),
-        'observation':$('#obs').val(),
-        'cpu_id':$('#cpu').val()
+        'to_id': forContacts,
+        'from_id': user_id,
+        'subject':$('#subject').val(),
     }
     console.log(newRow);
 
-    $.post('main.php',{method:'insert',data:newRow},function(e){
+    $.post('main.php',{method:'insert',data:newRow,messages:messages},function(e){
         
-        getData();
         $('#frm')[0].reset();
+        getUserEmail();
+        messages = [];
     });
 }
 
-function deleteData(id){
-    $.post('main.php',{method:'delete',data:{id:id}},function(e){
-        getData();
-    });
-}
-
-function editRow(id){
-    editId = id;
-    $.post('main.php',{method:'show',data:{id:id}},function(e){
-        console.log(e);
-        $('#Eperson').val(e[0].person_id);
-        $('#Ecpu').val(e[0].cpu_id);
-        $('#Eobs').val(e[0].observation);
-        $('#editModal').modal();
-        setupModalValidation();
-    });
-    
-}
-
-function updateData() {
-    var newRow = {
-        'id':editId,
-        'person_id':$('#Eperson').val(),
-        'observation':$('#Eobs').val(),
-        'cpu_id':$('#Ecpu').val()
-    }
-    
-    $.post('main.php',{method:'update',data:newRow},function(e){
-        console.log(newRow);
-        $('#editModal').modal('toggle');
-        getData();
-        $.notify({
-            // options
-            message: 'Datos actualizados con éxito' 
-        },{
-            // settings
-            type: 'success'
-        });
-    });
-    
-}
 var data = [];
 
 var columns = [{
@@ -175,41 +160,18 @@ function setDataTable(data){
 function setupValidation(){
     $('#frm').validate({
         rules:{
-            person:{
+            email:{
                 required:true
             },
-            obs: {
+            foremail: {
+                required:true
+            },
+            subject: {
                 required:true
             }
         },
         submitHandler: function(form){
             addData();
-        },
-        invalidHandler:function(form){
-            $.notify({
-                // options
-                message: 'Introduce bien los datos' 
-            },{
-                // settings
-                type: 'danger'
-            });
-        }
-    });
-}
-
-function setupModalValidation(){
-    $('#Efrm').validate({
-        rules:{
-            Eperson:{
-                required:true
-            },
-            Eobs: {
-                required:true
-            }
-
-        },
-        submitHandler: function(form){
-            updateData();
         },
         invalidHandler:function(form){
             $.notify({
