@@ -19,7 +19,7 @@ html{
 }
 
 body {
-    @extend html;
+  @extend html;
   display: -ms-flexbox !important;
   -ms-flex-align: center !important;
   align-items: center !important;

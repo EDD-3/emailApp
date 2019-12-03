@@ -19,7 +19,6 @@ $.extend($.validator.messages,{
 
 $(document).ready(function(){
     getUserId();
-    getUsername();
     getUserEmail();
     setupValidation();
     getDropContacts();
@@ -32,6 +31,11 @@ $(document).ready(function(){
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
       });
+
+    $(".btn-danger").click(() => {
+        getUserEmail();
+        messages = [];
+    });  
 });
 
 let user_id;
@@ -64,7 +68,7 @@ function getDropContacts(){
 
 const getUsername = () => {
     $.post('../login/main.php',{method:'getUsername'},function(data){
-        $("#name").text(data);
+        
     });
 }
 

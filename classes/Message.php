@@ -58,7 +58,7 @@ class Message extends Connection
 
         try
         {
-            $statement = $cnx->prepare("SELECT * FROM messages");
+            $statement = $cnx->prepare("SELECT m.subject,m.date_time,u.email,md.body,m.to_id FROM messages m LEFT JOIN message_details md ON md.message_id = m.id LEFT JOIN users u ON u.id = m.from_id");
             $statement->execute();
             $return_value['response'] = [];
             while($row = $statement->fetch(PDO::FETCH_ASSOC))
